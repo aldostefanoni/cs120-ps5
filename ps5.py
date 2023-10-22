@@ -147,9 +147,8 @@ def bfs_2_coloring(G, precolored_nodes=None):
                 break
         if G.colors[vertex] not in [0, 1]:
             G.reset_colors()
-            return None
-        else:
-            return G.colors
+            return None  
+    return G.colors
 
 '''
     Part B: Implement is_independent_set.
@@ -210,7 +209,7 @@ def iset_bfs_3_coloring(G):
                         G_less_S.add_edge(vertex, edge)
                     except:
                         pass # this means the edge has already been added
-            f_minus_S = exhaustive_search_coloring(G_less_S, 2)   
+            f_minus_S = bfs_2_coloring(G_less_S)   
             if f_minus_S is not None:
                 for vertex, edge_set in enumerate(G_less_S.edges):
                     if vertex in subset:
