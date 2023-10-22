@@ -152,7 +152,12 @@ def bfs_2_coloring(G, precolored_nodes=None):
 # Checks if subset is an independent set in G 
 def is_independent_set(G, subset):
     # TODO: Complete this function
-    return True
+    for node in subset:
+        for vertex in G.edges[node]: # for each connected vertex in the set of
+                                     # edges originated from each node in "subset"
+            if vertex in subset:
+                return False
+    return True        
 
 '''
     Part C: Implement the 3-coloring algorithm from the sender receiver exercise.
