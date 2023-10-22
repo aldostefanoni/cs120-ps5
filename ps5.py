@@ -1,5 +1,4 @@
 from itertools import product, combinations
-from ps5_helpers import COLORS
 
 '''
 Before you start: Read the README and the Graph implementation below.
@@ -10,7 +9,7 @@ class Graph:
     A graph data structure with number of nodes N, list of sets of edges, and a list of color labels.
 
     Nodes and colors are both 0-indexed.
-    For a given node u, its edges are located at self.edges[u] and its color is self.color[u].
+    For a given node u, its edges are located at self.edges[u] and its color is self.colors[u].
     '''
 
     # Initializes the number of nodes, sets of edges for each node, and colors
@@ -106,7 +105,7 @@ def exhaustive_search_coloring(G, k=3):
     Hint: You will need to adapt the given BFS pseudocode so that it works on all graphs,
     regardless of whether they are connected.
 
-    When you're finished, check your work by running python3 -m ps5_color_tests 2.
+    When you're finished, check your work by running python3 -m ps5_tests 2.
 '''
 
 # Given an instance of the Graph class G and a subset of precolored nodes,
@@ -131,14 +130,22 @@ def bfs_2_coloring(G, precolored_nodes=None):
     # TODO: Complete this function by implementing two-coloring using the colors 0 and 1.
     # If there is no valid coloring, reset all the colors to None using G.reset_colors()
     MAX_COLORING = 2
-    for i, edges in enumerate(G.edges):
+    order = []
+    for vertex, edge_set in enumerate(G.edges):
+        if vertex not in order:
+            order.append(vertex)
+        for edge in edge_set:
+            if edge not in order:
+                order.append(edge)
+    for vertex in order:
         existing_colors = set()
-        for v in edges:
-            existing_colors.add(G.colors[v])
+        for edge in G.edges[vertex]:
+            existing_colors.add(G.colors[edge])
         for color in range(MAX_COLORING + 1):
             if color not in existing_colors:
-                G.colors[i] = color
-        if G.colors[i] not in [0, 1]:
+                G.colors[vertex] = color
+                break
+        if G.colors[vertex] not in [0, 1]:
             G.reset_colors()
             return None
         else:
@@ -178,7 +185,7 @@ def is_independent_set(G, subset):
     Instead, you should iterate over them in a for loop, which will maintain the lazy behavior we want.
     See the call to "product" in exhaustive_search for an example.
 
-    When you're finished, check your work by running python3 -m ps5_color_tests 3.
+    When you're finished, check your work by running python3 -m ps5_tests 3.
     Don't worry if some of your tests time out: that is expected.
 '''
 
@@ -187,7 +194,28 @@ def is_independent_set(G, subset):
 # If no coloring is possible, resets all of G's colors to None and returns None.
 def iset_bfs_3_coloring(G):
     # TODO: Complete this function.
-
+    max_size = G.N // 3
+    subsets = combinations(range(G.N), max_size)
+    for subset_tuple in subsets:
+        subset = list(subset_tuple)
+        if is_independent_set(G, subset):
+            G_less_S = Graph(G.N)
+            for vertex, edge_set in enumerate(G.edges):
+                if vertex in subset:
+                    continue
+                for edge in edge_set:
+                    if edge in subset:
+                        continue
+                    try:
+                        G_less_S.add_edge(vertex, edge)
+                    except:
+                        pass # this means the edge has already been added
+            f_minus_S = exhaustive_search_coloring(G_less_S, 2)   
+            if f_minus_S is not None:
+                for vertex, edge_set in enumerate(G_less_S.edges):
+                    if vertex in subset:
+                        G_less_S.colors[vertex] = 2
+                return G_less_S.colors
     G.reset_colors()
     return None
 
