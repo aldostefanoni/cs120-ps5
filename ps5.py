@@ -150,6 +150,9 @@ def bfs_2_coloring(G, precolored_nodes=None):
 
 # Given an instance of the Graph class G and a subset of precolored nodes,
 # Checks if subset is an independent set in G 
+
+# An independent set in G is a subset S ⊆ V such that
+# there are no edges entirely in S
 def is_independent_set(G, subset):
     # TODO: Complete this function
     for node in subset:
