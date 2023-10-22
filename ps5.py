@@ -1,4 +1,6 @@
 from itertools import product, combinations
+from collections import deque
+
 
 '''
 Before you start: Read the README and the Graph implementation below.
@@ -127,65 +129,38 @@ def bfs_2_coloring(G, precolored_nodes=None):
         if len(precolored_nodes) == G.N:
             return G.colors
     
-    # TODO: Complete this function by implementing two-coloring using the colors 0 and 1.
     # If there is no valid coloring, reset all the colors to None using G.reset_colors()
     MAX_COLORING = 2
-    
-    # def bfs(ord_arr, v):
-    #     if v in ord_arr:
-    #         return ord_arr
-    #     else:
-    #         ord_arr.append(v)
-    #         for node in G.edges[v]:
-    #             if node not in ord_arr:
-    #                 ord_arr.append(node)
-    #         for node in G.edges[v]:
-    #             ord_arr = bfs(ord_arr, node)
-    #         return ord_arr
-
-    from collections import deque
-
-
-    visited = set()
     order = []
 
-    def bfs(G, start):     
+    def bfs(start):  # modifies order through side-effects 
         queue = deque()
-        visited.add(start)
         order.append(start)
         queue.append(start)
 
-        while queue:
-            node = queue.popleft()
+        while queue: 
+            node = queue.popleft() # take elt out of queue
             for neighbor in G.edges[node]:
-                if neighbor not in visited:
-                    visited.add(neighbor)
-                    order.append(neighbor)
-                    queue.append(neighbor)
-
+                if neighbor in order:
+                    continue
+                order.append(neighbor) 
+                queue.append(neighbor) # append neighbor to queue
         return
-
-
     
-    
-    for vertex, edge_set in enumerate(G.edges):
-        if vertex in visited:
+    for node in range(G.N):
+        if node in order:
             continue
-        else:
-            bfs(G, vertex)
+        bfs(node)
 
-        
-
-
-    for vertex in order:
+    for node in order:
         existing_colors = set()
-        for edge in G.edges[vertex]:
+        for edge in G.edges[node]:
             existing_colors.add(G.colors[edge])
         for color in range(MAX_COLORING + 1):
             if color not in existing_colors:
-                G.colors[vertex] = color
+                G.colors[node] = color
                 break
-        if G.colors[vertex] not in range(MAX_COLORING):
+        if G.colors[node] not in range(MAX_COLORING):
             G.reset_colors()
             return None  
     return G.colors
@@ -200,11 +175,10 @@ def bfs_2_coloring(G, precolored_nodes=None):
 # An independent set in G is a subset S ⊆ V such that
 # there are no edges entirely in S
 def is_independent_set(G, subset):
-    # TODO: Complete this function
     for node in subset:
-        for vertex in G.edges[node]: # for each connected vertex in the set of
+        for neighbor in G.edges[node]: # for each connected vertex in the set of
                                      # edges originated from each node in "subset"
-            if vertex in subset:
+            if neighbor in subset:
                 return False
     return True        
 
@@ -232,28 +206,27 @@ def is_independent_set(G, subset):
 # If successful, modifies G.colors and returns the coloring.
 # If no coloring is possible, resets all of G's colors to None and returns None.
 def iset_bfs_3_coloring(G):
-    # TODO: Complete this function.
     max_size = G.N // 3
     subsets = combinations(range(G.N), max_size)
     for sub_tuple in subsets:
         subset = list(sub_tuple)
         if is_independent_set(G, subset):
             G_less_S = Graph(G.N)
-            for vertex, edge_set in enumerate(G.edges):
-                if vertex in subset:
+            for node, neighbors in enumerate(G.edges):
+                if node in subset:
                     continue
-                for edge in edge_set:
-                    if edge in subset:
+                for neighbor in neighbors:
+                    if neighbor in subset:
                         continue
                     try:
-                        G_less_S.add_edge(vertex, edge)
+                        G_less_S.add_edge(node, neighbor)
                     except:
                         pass # the edge has already been added
             f_minus_S = bfs_2_coloring(G_less_S)   
             if f_minus_S is not None:
-                for vertex, edge_set in enumerate(G_less_S.edges):
-                    if vertex in subset:
-                        G_less_S.colors[vertex] = 2
+                for node in range(G_less_S.N):
+                    if node in subset:
+                        G_less_S.colors[node] = 2
                 return G_less_S.colors
     G.reset_colors()
     return None
