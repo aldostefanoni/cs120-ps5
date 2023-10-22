@@ -130,13 +130,53 @@ def bfs_2_coloring(G, precolored_nodes=None):
     # TODO: Complete this function by implementing two-coloring using the colors 0 and 1.
     # If there is no valid coloring, reset all the colors to None using G.reset_colors()
     MAX_COLORING = 2
+    
+    # def bfs(ord_arr, v):
+    #     if v in ord_arr:
+    #         return ord_arr
+    #     else:
+    #         ord_arr.append(v)
+    #         for node in G.edges[v]:
+    #             if node not in ord_arr:
+    #                 ord_arr.append(node)
+    #         for node in G.edges[v]:
+    #             ord_arr = bfs(ord_arr, node)
+    #         return ord_arr
+
+    from collections import deque
+
+
+    visited = set()
     order = []
+
+    def bfs(G, start):     
+        queue = deque()
+        visited.add(start)
+        order.append(start)
+        queue.append(start)
+
+        while queue:
+            node = queue.popleft()
+            for neighbor in G.edges[node]:
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    order.append(neighbor)
+                    queue.append(neighbor)
+
+        return
+
+
+    
+    
     for vertex, edge_set in enumerate(G.edges):
-        if vertex not in order:
-            order.append(vertex)
-        for edge in edge_set:
-            if edge not in order:
-                order.append(edge)
+        if vertex in visited:
+            continue
+        else:
+            bfs(G, vertex)
+
+        
+
+
     for vertex in order:
         existing_colors = set()
         for edge in G.edges[vertex]:
@@ -145,7 +185,7 @@ def bfs_2_coloring(G, precolored_nodes=None):
             if color not in existing_colors:
                 G.colors[vertex] = color
                 break
-        if G.colors[vertex] not in [0, 1]:
+        if G.colors[vertex] not in range(MAX_COLORING):
             G.reset_colors()
             return None  
     return G.colors
@@ -195,8 +235,8 @@ def iset_bfs_3_coloring(G):
     # TODO: Complete this function.
     max_size = G.N // 3
     subsets = combinations(range(G.N), max_size)
-    for subset_tuple in subsets:
-        subset = list(subset_tuple)
+    for sub_tuple in subsets:
+        subset = list(sub_tuple)
         if is_independent_set(G, subset):
             G_less_S = Graph(G.N)
             for vertex, edge_set in enumerate(G.edges):
@@ -208,7 +248,7 @@ def iset_bfs_3_coloring(G):
                     try:
                         G_less_S.add_edge(vertex, edge)
                     except:
-                        pass # this means the edge has already been added
+                        pass # the edge has already been added
             f_minus_S = bfs_2_coloring(G_less_S)   
             if f_minus_S is not None:
                 for vertex, edge_set in enumerate(G_less_S.edges):
