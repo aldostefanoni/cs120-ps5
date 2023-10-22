@@ -152,7 +152,6 @@ def bfs_2_coloring(G, precolored_nodes=None):
 # Checks if subset is an independent set in G 
 def is_independent_set(G, subset):
     # TODO: Complete this function
-
     return True
 
 '''
