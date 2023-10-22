@@ -1,4 +1,5 @@
 from itertools import product, combinations
+from ps5_helpers import COLORS
 
 '''
 Before you start: Read the README and the Graph implementation below.
@@ -129,9 +130,19 @@ def bfs_2_coloring(G, precolored_nodes=None):
     
     # TODO: Complete this function by implementing two-coloring using the colors 0 and 1.
     # If there is no valid coloring, reset all the colors to None using G.reset_colors()
-    
-    G.reset_colors()
-    return None
+    MAX_COLORING = 2
+    for i, edges in enumerate(G.edges):
+        existing_colors = set()
+        for v in edges:
+            existing_colors.add(G.colors[v])
+        for color in range(MAX_COLORING + 1):
+            if color not in existing_colors:
+                G.colors[i] = color
+        if G.colors[i] not in [0, 1]:
+            G.reset_colors()
+            return None
+        else:
+            return G.colors
 
 '''
     Part B: Implement is_independent_set.
