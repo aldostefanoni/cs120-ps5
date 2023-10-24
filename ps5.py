@@ -207,30 +207,31 @@ def is_independent_set(G, subset):
 # If no coloring is possible, resets all of G's colors to None and returns None.
 def iset_bfs_3_coloring(G):
     max_size = G.N // 3
-    subsets = combinations(range(G.N), max_size)
-    for sub_tuple in subsets:
-        subset = list(sub_tuple)
-        if is_independent_set(G, subset):
-            
-            G_less_S = Graph(G.N)
-            for node, neighbors in enumerate(G.edges):
-                if node in subset:
-                    continue
-                for neighbor in neighbors:
-                    if neighbor in subset:
-                        continue
-                    try:
-                        G_less_S.add_edge(node, neighbor)
-                    except:
-                        pass # the edge has already been added
-                   
-            if bfs_2_coloring(G_less_S) is not None:
-                for node in range(G_less_S.N):
+    for size in range(max_size, -1, -1):
+        subsets = combinations(range(G.N), size)
+        for sub_tuple in subsets:
+            subset = list(sub_tuple)
+            if is_independent_set(G, subset):
+                
+                G_less_S = Graph(G.N)
+                for node, neighbors in enumerate(G.edges):
                     if node in subset:
-                        G_less_S.colors[node] = 2
-                return G_less_S.colors
-    G.reset_colors()
-    return None
+                        continue
+                    for neighbor in neighbors:
+                        if neighbor in subset:
+                            continue
+                        try:
+                            G_less_S.add_edge(node, neighbor)
+                        except:
+                            pass # the edge has already been added
+                       
+                if bfs_2_coloring(G_less_S) is not None:
+                    for node in range(G_less_S.N):
+                        if node in subset:
+                            G_less_S.colors[node] = 2
+                    return G_less_S.colors
+        G.reset_colors()
+        return None
 
 # Feel free to add miscellaneous tests below!
 if __name__ == "__main__":
