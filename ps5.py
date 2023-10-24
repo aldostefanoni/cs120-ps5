@@ -208,9 +208,10 @@ def is_independent_set(G, subset):
 def iset_bfs_3_coloring(G):
     max_size = G.N // 3
     # for size in range(max_size, -1, -1):
-    size = -1
-    while size < max_size:
-        size += 1
+    # size = -1
+    # while size < max_size:
+    #     size += 1
+    for size in range(max_size + 1):
         subsets = combinations(range(G.N), size)
         for sub_tuple in subsets:
             subset = list(sub_tuple)
