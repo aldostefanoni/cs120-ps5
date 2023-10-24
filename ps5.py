@@ -232,7 +232,7 @@ def iset_bfs_3_coloring(G):
                         if node in subset:
                             G_less_S.colors[node] = 2
                     return G_less_S.colors
-          size += 1      
+        size += 1      
     G.reset_colors()
     return None
 
