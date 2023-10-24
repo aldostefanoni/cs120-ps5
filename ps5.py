@@ -224,13 +224,13 @@ def iset_bfs_3_coloring(G):
                     except:
                         pass # the edge has already been added
                    
-            f_minus_S = bfs_2_coloring(G_less_S)   
-            if f_minus_S is not None:
+            # f_minus_S = 
+            if bfs_2_coloring(G_less_S) is not None:
                 for node in range(G_less_S.N):
                     if node in subset:
                         G_less_S.colors[node] = 2
-                    else:
-                        G_less_S.colors[node] = f_minus_S[node]
+                    # else:
+                    #     G_less_S.colors[node] = f_minus_S[node]
                 return G_less_S.colors
     G.reset_colors()
     return None
