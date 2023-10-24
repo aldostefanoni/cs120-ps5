@@ -207,7 +207,9 @@ def is_independent_set(G, subset):
 # If no coloring is possible, resets all of G's colors to None and returns None.
 def iset_bfs_3_coloring(G):
     max_size = G.N // 3
-    for size in range(max_size, -1, -1):
+    # for size in range(max_size, -1, -1):
+    size = 0
+    while size < max_size:
         subsets = combinations(range(G.N), size)
         for sub_tuple in subsets:
             subset = list(sub_tuple)
@@ -230,8 +232,9 @@ def iset_bfs_3_coloring(G):
                         if node in subset:
                             G_less_S.colors[node] = 2
                     return G_less_S.colors
-        G.reset_colors()
-        return None
+          size += 1      
+    G.reset_colors()
+    return None
 
 # Feel free to add miscellaneous tests below!
 if __name__ == "__main__":
