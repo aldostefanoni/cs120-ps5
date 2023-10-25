@@ -153,8 +153,14 @@ def bfs_2_coloring(G, precolored_nodes=None):
         bfs(node)
 
     for node in order:
+        if precolored_nodes is not None: 
+            if node in precolored_nodes:
+                continue
         existing_colors = set()
         for edge in G.edges[node]:
+            if precolored_nodes is not None: 
+                if edge in precolored_nodes:
+                    continue
             existing_colors.add(G.colors[edge])
         for color in range(MAX_COLORING + 1):
             if color not in existing_colors:
@@ -212,17 +218,6 @@ def iset_bfs_3_coloring(G):
         for sub_tuple in subsets:
             subset = list(sub_tuple)
             if is_independent_set(G, subset):
-                # G_less_S = Graph(G.N)
-                # for node, neighbors in enumerate(G.edges):
-                #     if node in subset:
-                #         continue
-                #     for neighbor in neighbors:
-                #         if neighbor in subset:
-                #             continue
-                #         try:
-                #             G_less_S.add_edge(node, neighbor)
-                #         except Exception:
-                #             pass # the edge has already been added
                 G_less_S = G.clone()
                 for node, neighbors in enumerate(G.edges):
                     if node in subset:
@@ -232,10 +227,10 @@ def iset_bfs_3_coloring(G):
                             except Exception:
                                 pass
                        
-                if bfs_2_coloring(G_less_S) is not None:
-                    for node in range(G_less_S.N):
-                        if node in subset:
-                            G_less_S.colors[node] = 2
+                if bfs_2_coloring(G_less_S, subset) is not None:
+                    # for node in range(G_less_S.N):
+                    #     if node in subset:
+                    #         G_less_S.colors[node] = 2
                     return G_less_S.colors
                     
     G.reset_colors()
