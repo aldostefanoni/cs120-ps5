@@ -128,16 +128,13 @@ def bfs_2_coloring(G, precolored_nodes=None):
 
         if len(precolored_nodes) == G.N:
             return G.colors
-    
     # If there is no valid coloring, reset all the colors to None using G.reset_colors()
     MAX_COLORING = 2
     order = []
-
     def bfs(start):  # modifies order through side-effects 
         queue = deque()
         order.append(start)
         queue.append(start)
-
         while queue: 
             node = queue.popleft() # take elt out of queue
             for neighbor in G.edges[node]:
@@ -152,15 +149,15 @@ def bfs_2_coloring(G, precolored_nodes=None):
             continue
         bfs(node)
 
-    for node in order:
+    for node in order: 
         if precolored_nodes is not None: 
             if node in precolored_nodes:
-                continue
+                continue    
         existing_colors = set()
         for edge in G.edges[node]:
             if precolored_nodes is not None: 
                 if edge in precolored_nodes:
-                    continue
+                    continue     
             existing_colors.add(G.colors[edge])
         for color in range(MAX_COLORING + 1):
             if color not in existing_colors:
@@ -217,20 +214,8 @@ def iset_bfs_3_coloring(G):
         subsets = combinations(range(G.N), size)
         for sub_tuple in subsets:
             subset = list(sub_tuple)
-            if is_independent_set(G, subset):
-                # G_less_S = G.clone()
-                # for node, neighbors in enumerate(G.edges):
-                #     if node in subset:
-                #         for neighbor in neighbors:
-                #             try:
-                #                 G_less_S.remove_edge(node, neighbor)
-                #             except Exception:
-                #                 pass
-                       
+            if is_independent_set(G, subset):                       
                 if bfs_2_coloring(G, subset) is not None:
-                    # for node in range(G_less_S.N):
-                    #     if node in subset:
-                    #         G_less_S.colors[node] = 2
                     return G.colors
                     
     G.reset_colors()
