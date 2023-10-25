@@ -218,20 +218,20 @@ def iset_bfs_3_coloring(G):
         for sub_tuple in subsets:
             subset = list(sub_tuple)
             if is_independent_set(G, subset):
-                G_less_S = G.clone()
-                for node, neighbors in enumerate(G.edges):
-                    if node in subset:
-                        for neighbor in neighbors:
-                            try:
-                                G_less_S.remove_edge(node, neighbor)
-                            except Exception:
-                                pass
+                # G_less_S = G.clone()
+                # for node, neighbors in enumerate(G.edges):
+                #     if node in subset:
+                #         for neighbor in neighbors:
+                #             try:
+                #                 G_less_S.remove_edge(node, neighbor)
+                #             except Exception:
+                #                 pass
                        
-                if bfs_2_coloring(G_less_S, subset) is not None:
+                if bfs_2_coloring(G, subset) is not None:
                     # for node in range(G_less_S.N):
                     #     if node in subset:
                     #         G_less_S.colors[node] = 2
-                    return G_less_S.colors
+                    return G.colors
                     
     G.reset_colors()
     return None
