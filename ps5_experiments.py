@@ -36,7 +36,7 @@ np.random.seed(120)
 '''
 
 # The timeout length in seconds
-TIMEOUT_LENGTH = 50
+TIMEOUT_LENGTH = 10
 
 def benchmark():
     # You may experiment with these parameters if you wish!

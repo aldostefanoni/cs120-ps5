@@ -1,0 +1,234 @@
+aldostefanoni@dhcp-10-250-147-34 ps5 % python3 ps5_experiments.py
+Line of Rings
+
+Size of ring 3
+        Number of rings 100
+        (n = 300, m = 399)
+                ⏱  Exhaustive Coloring:  Timeout
+                ⏱  ISET BFS Coloring:  Timeout
+        Number of rings 200
+        (n = 600, m = 799)
+                ⏱  Exhaustive Coloring:  Timeout
+                ⏱  ISET BFS Coloring:  Timeout
+Size of ring 4
+        Number of rings 100
+        (n = 400, m = 499)
+                ⏱  Exhaustive Coloring:  Timeout
+                ✓  ISET BFS Coloring:  Finished
+        Number of rings 200
+        (n = 800, m = 999)
+                ⏱  Exhaustive Coloring:  Timeout
+                ✓  ISET BFS Coloring:  Finished
+Size of ring 5
+        Number of rings 100
+        (n = 500, m = 599)
+                ⏱  Exhaustive Coloring:  Timeout
+                ⏱  ISET BFS Coloring:  Timeout
+        Number of rings 200
+        (n = 1000, m = 1199)
+                ⏱  Exhaustive Coloring:  Timeout
+                ⏱  ISET BFS Coloring:  Timeout
+
+
+Randomized Cluster Connections (Semi Independent Sets)
+
+Probability of keeping edge 0.2
+        Number of clusters 2
+                Size of cluster 2
+                (n = 4, m = 0)
+                        ✓  Exhaustive Coloring:  Finished
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 10
+                (n = 20, m = 20)
+                        ✓  Exhaustive Coloring:  Finished
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 18
+                (n = 36, m = 61)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ✓  ISET BFS Coloring:  Finished
+        Number of clusters 3
+                Size of cluster 2
+                (n = 6, m = 2)
+                        ✓  Exhaustive Coloring:  Finished
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 10
+                (n = 30, m = 60)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 18
+                (n = 54, m = 199)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ⏱  ISET BFS Coloring:  Timeout
+        Number of clusters 4
+                Size of cluster 2
+                (n = 8, m = 4)
+                        ✓  Exhaustive Coloring:  Finished
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 10
+                (n = 40, m = 143)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ⏱  ISET BFS Coloring:  Timeout
+                Size of cluster 18
+                (n = 72, m = 406)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ⏱  ISET BFS Coloring:  Timeout
+Probability of keeping edge 0.35
+        Number of clusters 2
+                Size of cluster 2
+                (n = 4, m = 2)
+                        ✓  Exhaustive Coloring:  Finished
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 10
+                (n = 20, m = 33)
+                        ✓  Exhaustive Coloring:  Finished
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 18
+                (n = 36, m = 108)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ✓  ISET BFS Coloring:  Finished
+        Number of clusters 3
+                Size of cluster 2
+                (n = 6, m = 4)
+                        ✓  Exhaustive Coloring:  Finished
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 10
+                (n = 30, m = 103)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 18
+                (n = 54, m = 333)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ⏱  ISET BFS Coloring:  Timeout
+        Number of clusters 4
+                Size of cluster 2
+                (n = 8, m = 9)
+                        ✓  Exhaustive Coloring:  Finished
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 10
+                (n = 40, m = 221)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ⏱  ISET BFS Coloring:  Timeout
+                Size of cluster 18
+                (n = 72, m = 693)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ⏱  ISET BFS Coloring:  Timeout
+Probability of keeping edge 0.49999999999999994
+        Number of clusters 2
+                Size of cluster 2
+                (n = 4, m = 2)
+                        ✓  Exhaustive Coloring:  Finished
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 10
+                (n = 20, m = 50)
+                        ✓  Exhaustive Coloring:  Finished
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 18
+                (n = 36, m = 168)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ✓  ISET BFS Coloring:  Finished
+        Number of clusters 3
+                Size of cluster 2
+                (n = 6, m = 2)
+                        ✓  Exhaustive Coloring:  Finished
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 10
+                (n = 30, m = 155)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 18
+                (n = 54, m = 468)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ⏱  ISET BFS Coloring:  Timeout
+        Number of clusters 4
+                Size of cluster 2
+                (n = 8, m = 12)
+                        ✓  Exhaustive Coloring:  Finished
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 10
+                (n = 40, m = 298)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ⏱  ISET BFS Coloring:  Timeout
+                Size of cluster 18
+                (n = 72, m = 999)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ⏱  ISET BFS Coloring:  Timeout
+Probability of keeping edge 0.6499999999999999
+        Number of clusters 2
+                Size of cluster 2
+                (n = 4, m = 2)
+                        ✓  Exhaustive Coloring:  Finished
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 10
+                (n = 20, m = 65)
+                        ✓  Exhaustive Coloring:  Finished
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 18
+                (n = 36, m = 196)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ✓  ISET BFS Coloring:  Finished
+        Number of clusters 3
+                Size of cluster 2
+                (n = 6, m = 8)
+                        ✓  Exhaustive Coloring:  Finished
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 10
+                (n = 30, m = 195)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 18
+                (n = 54, m = 611)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ⏱  ISET BFS Coloring:  Timeout
+        Number of clusters 4
+                Size of cluster 2
+                (n = 8, m = 15)
+                        ✓  Exhaustive Coloring:  Finished
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 10
+                (n = 40, m = 387)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ⏱  ISET BFS Coloring:  Timeout
+                Size of cluster 18
+                (n = 72, m = 1259)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ⏱  ISET BFS Coloring:  Timeout
+Probability of keeping edge 0.7999999999999998
+        Number of clusters 2
+                Size of cluster 2
+                (n = 4, m = 4)
+                        ✓  Exhaustive Coloring:  Finished
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 10
+                (n = 20, m = 77)
+                        ✓  Exhaustive Coloring:  Finished
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 18
+                (n = 36, m = 256)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ✓  ISET BFS Coloring:  Finished
+        Number of clusters 3
+                Size of cluster 2
+                (n = 6, m = 10)
+                        ✓  Exhaustive Coloring:  Finished
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 10
+                (n = 30, m = 228)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 18
+                (n = 54, m = 756)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ⏱  ISET BFS Coloring:  Timeout
+        Number of clusters 4
+                Size of cluster 2
+                (n = 8, m = 16)
+                        ✓  Exhaustive Coloring:  Finished
+                        ✓  ISET BFS Coloring:  Finished
+                Size of cluster 10
+                (n = 40, m = 474)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ⏱  ISET BFS Coloring:  Timeout
+                Size of cluster 18
+                (n = 72, m = 1537)
+                        ⏱  Exhaustive Coloring:  Timeout
+                        ⏱  ISET BFS Coloring:  Timeout
